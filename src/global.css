@@ -1,0 +1,192 @@
+@import "@/styles/button.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: #9fadbd;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --text-primary: #09090b;
+    --text-secondary: #18181b;
+    --text-tertiary: #3f3f46;
+
+    --btn-overlap: #3f4a3c;
+    --btn-overlap-foreground: #edecda;
+
+    --welcome: #edecda33;
+
+    --bg-emphasis: #89aac7;
+
+    --fail: #c62a30;
+    --fail-foreground: #fff;
+    --success: #51a243;
+    --success-foreground: #fff;
+
+    --btn-default: #fff;
+    --btn-default-foreground: #3f4a3c;
+
+    --bg-blur: #8191b266;
+
+    --text-emphasis: #004cb6;
+
+    --link: #0071dd;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: #1e293b;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --text-primary: #fafafa;
+    --text-secondary: #d4d4d8;
+    --text-tertiary: #a1a1aa;
+
+    --btn-overlap: #a3af9e;
+    --btn-overlap-foreground: #2f4858;
+
+    --welcome: #3a4856;
+
+    --bg-emphasis: #33454f;
+
+    --fail: #ac3c18;
+    --fail-foreground: #fff;
+    --success: #058805;
+    --success-foreground: #fff;
+
+    --btn-default: #0d1113;
+    --btn-default-foreground: #97afb9;
+
+    --bg-blur: #17000066;
+
+    --text-emphasis: #618aca;
+    --link: #008eff;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scrollbar-color: var(--border) transparent;
+    scrollbar-width: thin;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 4px;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button {
+    @apply focus-visible:outline-none;
+  }
+}
+
+.tiptap p.is-empty::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  color: var(--text-tertiary);
+  @apply truncate;
+}
+
+.divider::before,
+.divider::after {
+  flex: 1;
+  content: "";
+  padding: 0.5px;
+  background-color: var(--text-tertiary);
+}
+
+.divider::before {
+  margin-right: 0.5rem;
+}
+.divider::after {
+  margin-left: 0.5rem;
+}
+
+.black_btn {
+  @apply rounded-full border border-primary-foreground px-4 py-2 text-center align-middle;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}

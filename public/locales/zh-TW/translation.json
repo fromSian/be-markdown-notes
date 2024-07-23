@@ -1,0 +1,26 @@
+{
+  "sign-up": "註冊",
+  "sign-in": "登錄",
+  "sign-in-with-google": "通過Google登錄",
+  "sign-in-with-google-info": "通過Google登錄，單次登錄有效期為一小時。全部功能可用，使用途中可轉換為正式用戶。",
+  "trial": "免登錄試用",
+  "trial-info": "免登錄試用一小時，體驗全部功能。試用途中可轉換成正式用戶，試用結束將清除您的數據。",
+  "email": "郵箱",
+  "password": "密碼",
+  "confirm": "確認密碼",
+  "verify-code": "發送驗證碼至郵箱",
+  "re-verify-code": "重新發送驗證碼至郵箱",
+  "success": {
+    "title": "註冊成功！",
+    "sign-in-directly": "立馬登錄",
+    "go-somewhere-else": "暫不登錄",
+    "description": "將在 {{seconds}}s 後前往首頁，或點擊按鈕立刻前往首頁",
+    "home": "首頁"
+  },
+  "contact": "聯絡方式：",
+  "not-found": {
+    "title": "抱歉，這裡沒有內容",
+    "home": "首頁",
+    "description": "如果您認為這裡應當有些內容，請寄信告知我們"
+  }
+}
