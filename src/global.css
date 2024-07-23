@@ -27,8 +27,8 @@
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: rgba(255, 40, 40, 0.9);
+    --destructive-foreground: rgba(255, 255, 255, 0.4);
 
     --border: #9fadbd;
     --input: 214.3 31.8% 91.4%;
@@ -84,8 +84,8 @@
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: rgba(234, 67, 11, 0.9);
+    --destructive-foreground: rgba(255, 255, 255, 0.4);
 
     --border: #1e293b;
     --input: 217.2 32.6% 17.5%;

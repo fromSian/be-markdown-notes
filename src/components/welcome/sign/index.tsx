@@ -96,8 +96,7 @@ const Sign = () => {
       <TooltipSimple content={t("sign-in-with-google-info")}>
         <p
           className={cn(
-            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100",
-            open === undefined && "opacity-100"
+            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100"
           )}
           onClick={handleGoogleAuth}
         >
@@ -107,8 +106,7 @@ const Sign = () => {
       <TooltipSimple content={t("trial-info")}>
         <p
           className={cn(
-            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100",
-            open === undefined && "opacity-100"
+            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100"
           )}
           onClick={handleTrial}
         >

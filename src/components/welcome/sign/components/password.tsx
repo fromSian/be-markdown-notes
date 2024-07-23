@@ -55,10 +55,10 @@ const Password = ({ handlePasswordSubmit }: PasswordProps) => {
   const onSubmit = useCallback(
     async (data: z.infer<typeof formSchema>) => {
       try {
-        setLoading(false);
+        setLoading(true);
+        await handlePasswordSubmit(data.password);
         setFail(false);
         setSuccess(true);
-        handlePasswordSubmit(data.password);
       } catch (error) {
         setFail(true);
       } finally {
