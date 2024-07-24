@@ -1,7 +1,10 @@
+import Fail from "@/components/icons/fail";
+import SuccessIcon from "@/components/icons/success";
 import TooltipSimple from "@/components/ui/tooltip-simple";
 import { cn } from "@/lib/utils";
 import { fetchTrial, goGoogleAuth } from "@/request/account";
 import { useAppDispatch } from "@/states/hooks";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -16,6 +19,9 @@ const Sign = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState<"signin" | "signup" | undefined>("signin");
+  const [trialStatus, setTrailStatus] = useState<
+    "loading" | "fail" | "success" | ""
+  >();
 
   useEffect(() => {
     const _open = searchParams.get("open");
@@ -38,38 +44,44 @@ const Sign = () => {
   };
 
   const handleTrial = async () => {
-    setOpen(undefined);
-    const {
-      defaultExpanded,
-      showExactTime,
-      sortInfo,
-      language,
-      theme,
-      ...rest
-    } = await fetchTrial();
-    dispatch({
-      type: "account/setAccount",
-      payload: rest,
-    });
-    const systemConfig = {
-      language: language,
-      theme: theme,
-    };
-    dispatch({
-      type: "account/setConfig",
-      payload: systemConfig,
-    });
-    const noteConfig = {
-      showExactTime: showExactTime,
-      defaultExpanded: defaultExpanded,
-      sortInfo: sortInfo,
-    };
-    dispatch({
-      type: "note/setConfig",
-      payload: noteConfig,
-    });
-    toast.success(t("trial-success", { ns: "message" }));
-    navigate("/");
+    try {
+      setOpen(undefined);
+      setTrailStatus("loading");
+      const {
+        defaultExpanded,
+        showExactTime,
+        sortInfo,
+        language,
+        theme,
+        ...rest
+      } = await fetchTrial();
+      dispatch({
+        type: "account/setAccount",
+        payload: rest,
+      });
+      const systemConfig = {
+        language: language,
+        theme: theme,
+      };
+      dispatch({
+        type: "account/setConfig",
+        payload: systemConfig,
+      });
+      const noteConfig = {
+        showExactTime: showExactTime,
+        defaultExpanded: defaultExpanded,
+        sortInfo: sortInfo,
+      };
+      dispatch({
+        type: "note/setConfig",
+        payload: noteConfig,
+      });
+      setTrailStatus("success");
+      toast.success(t("trial-success", { ns: "message" }));
+      navigate("/");
+    } catch (error) {
+      setTrailStatus("fail");
+    }
   };
   return (
     <div className="flex flex-col p-4 justify-center xl:w-[40vw] lg:w-[45vw] md:w-[50vw]">
@@ -106,11 +118,14 @@ const Sign = () => {
       <TooltipSimple content={t("trial-info")}>
         <p
           className={cn(
-            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100"
+            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100 flex items-center gap-2"
           )}
           onClick={handleTrial}
         >
           {t("trial")}
+          {trialStatus === "loading" && <Loader className="animate-spin" />}
+          {trialStatus === "success" && <SuccessIcon />}
+          {trialStatus === "fail" && <Fail />}
         </p>
       </TooltipSimple>
     </div>
