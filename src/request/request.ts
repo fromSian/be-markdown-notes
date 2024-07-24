@@ -2,7 +2,10 @@ import { handleRSAEncrypt } from "@/lib/encryption";
 import axios, { AxiosResponse } from "axios";
 import { httpErrorHandler } from "./error";
 const request = axios.create({
-  baseURL: "/api",
+  baseURL:
+    import.meta.env.MODE === "development"
+      ? "/api"
+      : "https://fromsian.pythonanywhere.com",
 });
 
 request.interceptors.request.use(
@@ -16,10 +19,8 @@ request.interceptors.request.use(
         ? "zh-hant"
         : localStorage.getItem("i18nextLng");
 
-    if (sessionStorage.getItem("token")) {
-      config.headers.Authorization = `Bearer ${sessionStorage.getItem(
-        "token"
-      )}`;
+    if (localStorage.getItem("token")) {
+      config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
     }
     return config;
   },

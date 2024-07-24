@@ -82,7 +82,7 @@ export const accountSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, (state, action) => {
-        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
         return {
           ...state,
           account: undefined,

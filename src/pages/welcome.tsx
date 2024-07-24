@@ -4,7 +4,7 @@ import Header from "@/components/welcome/header";
 import { useEffect } from "react";
 const Welcome = () => {
   useEffect(() => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
   }, []);
 
   return (

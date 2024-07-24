@@ -58,7 +58,7 @@ const GoogleSuccess = () => {
           type: "note/setConfig",
           payload: noteConfig,
         });
-        sessionStorage.setItem("token", token);
+        localStorage.setItem("token", token);
         toast.success(t("signin-google-success", { ns: "message" }));
       } else {
         throw new Error("token not valid");
@@ -71,7 +71,7 @@ const GoogleSuccess = () => {
   };
 
   useEffect(() => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     const token = searchParams.get("token");
     if (token) {
       checkToken(token);

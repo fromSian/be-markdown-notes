@@ -68,7 +68,7 @@ export const httpErrorHandler = (error: unknown) => {
         toast.error(message);
         // 401 Unauthorized
         setTimeout(() => {
-          sessionStorage.removeItem("token");
+          localStorage.removeItem("token");
           window.location.href = "/welcome";
         }, 2000);
       } else {

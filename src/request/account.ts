@@ -3,7 +3,7 @@ import request from "./request";
 export const fetchLogin = async (data: { email: string; password: string }) => {
   const url = "/account/login/";
   const response: Account & Settings = await request.post(url, data);
-  sessionStorage.setItem("token", response?.token);
+  localStorage.setItem("token", response?.token);
   return response;
 };
 
@@ -30,6 +30,6 @@ export const goGoogleAuth = () => {
 export const fetchTrial = async () => {
   const url = "/account/trial/";
   const response: Account & Settings = await request.post(url);
-  sessionStorage.setItem("token", response?.token);
+  localStorage.setItem("token", response?.token);
   return response;
 };

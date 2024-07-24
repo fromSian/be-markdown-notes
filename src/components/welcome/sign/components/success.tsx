@@ -24,7 +24,7 @@ const Success = ({ goSomeWhereElse, handleLogin }: SuccessProps) => {
     }
   };
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <div className="flex flex-col gap-4 items-center pb-2">
       <p className="text-success font-bold">{t("success.title")}</p>
       <div className="flex gap-2">
         <button

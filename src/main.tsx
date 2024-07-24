@@ -57,7 +57,7 @@ const Wrap = ({
         payload: noteConfig,
       });
     } catch (error) {
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("token");
     }
   };
 
@@ -65,7 +65,7 @@ const Wrap = ({
     if (isLogin) {
       return;
     }
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (token) {
       queryUserInfo();
     } else {
