@@ -118,7 +118,7 @@ const Sign = () => {
       <TooltipSimple content={t("trial-info")}>
         <p
           className={cn(
-            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100 flex items-center gap-2"
+            "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100 flex items-center gap-2 justify-center"
           )}
           onClick={handleTrial}
         >

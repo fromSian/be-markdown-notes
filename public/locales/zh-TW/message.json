@@ -14,5 +14,6 @@
   "update-theme-success": "更新首選主題成功",
   "update-expand-success": "更新是否默認展開成功",
   "update-time-success": "更新是否展示具體日期時間成功",
-  "update-sort-success": "更新默認排序方式成功"
+  "update-sort-success": "更新默認排序方式成功",
+  "export-fail": "導出失敗"
 }

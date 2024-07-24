@@ -4,7 +4,8 @@ import {
 } from "@/states/account.slice";
 import { useAppDispatch, useAppSelector } from "@/states/hooks";
 import { AppThunkDispatch } from "@/states/store";
-import { useMemo } from "react";
+import { Loader } from "lucide-react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import SelectValue from "../select-value";
@@ -20,8 +21,13 @@ const System = () => {
   const { t } = useTranslation(["settings", "message"]);
   const { language, theme } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch<AppThunkDispatch>();
+
+  const [lngLoading, setLngLoading] = useState(false);
+  const [themeLoading, setThemeLoading] = useState(false);
+
   const setLanguage = async (value: string) => {
     try {
+      setLngLoading(true);
       await dispatch(updateDefaultLanguage({ value })).unwrap();
       toast.success(
         t("update-language-success", {
@@ -30,10 +36,13 @@ const System = () => {
       );
     } catch (error) {
       console.log(error);
+    } finally {
+      setLngLoading(false);
     }
   };
   const setTheme = async (value: string) => {
     try {
+      setThemeLoading(true);
       await dispatch(updateDefaultTheme({ value })).unwrap();
       toast.success(
         t("update-theme-success", {
@@ -42,6 +51,8 @@ const System = () => {
       );
     } catch (error) {
       console.log(error);
+    } finally {
+      setThemeLoading(false);
     }
   };
 
@@ -64,16 +75,26 @@ const System = () => {
             title={t("language.title")}
             info={t("language.description")}
           />
-          <SelectValue
-            value={language}
-            setValue={setLanguage}
-            items={languageOptions}
-          />
+          <div className="flex gap-2 items-center">
+            {lngLoading && <Loader className="animate-spin" size={16} />}
+            <SelectValue
+              value={language}
+              setValue={setLanguage}
+              items={languageOptions}
+            />
+          </div>
         </div>
 
         <div className="flex justify-between py-2 px-4 rounded-md bg-emphasis">
           <TitleKit title={t("theme.title")} info={t("theme.description")} />
-          <SelectValue value={theme} setValue={setTheme} items={themeOptions} />
+          <div className="flex gap-2 items-center">
+            {themeLoading && <Loader className="animate-spin" size={16} />}
+            <SelectValue
+              value={theme}
+              setValue={setTheme}
+              items={themeOptions}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -14,5 +14,6 @@
   "update-theme-success": "update default theme successfully",
   "update-expand-success": "update default expand successfully",
   "update-time-success": "update show detail datetime successfully",
-  "update-sort-success": "update default sort ordering successfully"
+  "update-sort-success": "update default sort ordering successfully",
+  "export-fail": "fail to export"
 }
