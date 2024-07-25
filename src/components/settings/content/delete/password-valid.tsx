@@ -75,6 +75,7 @@ const PasswordValid = ({ setConfirmed }: PasswordValidProps) => {
               <FormItem>
                 <FormControl>
                   <InputWithLabel
+                    type="password"
                     placeholder={t("password")}
                     {...field}
                     onKeyDown={onEnter}

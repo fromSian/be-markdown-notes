@@ -24,6 +24,7 @@ const Content = memo(({}: MainContentProps) => {
 
   useEffect(() => {
     setAdding(false);
+    contentRefs.current = [];
   }, [activeId]);
 
   const handleAdding = () => {

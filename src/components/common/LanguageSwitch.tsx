@@ -17,6 +17,7 @@ const LanguageSwitch = memo(({ language }: { language: string }) => {
 
   useEffect(() => {
     if (language) {
+      i18n.changeLanguage(language);
       setCurrentLng(language);
     }
   }, [language]);

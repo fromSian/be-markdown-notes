@@ -143,7 +143,7 @@ const List = ({
 
       setLoaded(false);
 
-      setData([]);
+      setData((v) => []);
       controllerRef.current = new AbortController();
       setLoading(true);
       const response = await queryNoteContents(
@@ -267,9 +267,11 @@ const List = ({
               item={item}
               index={index}
               sortField={sortInfo.replace("-", "") as "updated" | "created"}
-              ref={(element) =>
-                (contentRefs.current[index] = element as ItemRef)
-              }
+              ref={(element) => {
+                if (element) {
+                  contentRefs.current[index] = element as ItemRef;
+                }
+              }}
               handleDelete={handleDelete}
               handleSave={handleSave}
               defaultExpanded={defaultExpanded}

@@ -63,7 +63,7 @@ const System = () => {
       { label: t("theme.dark"), value: "dark" },
       { label: t("theme.system"), value: "system" },
     ],
-    []
+    [t]
   );
 
   return (

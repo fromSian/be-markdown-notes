@@ -4,13 +4,16 @@ import Password from "@/components/welcome/sign/components/password";
 import { handleRSAEncrypt } from "@/lib/encryption";
 import { cn } from "@/lib/utils";
 import request from "@/request/request";
+import { logout } from "@/states/account.slice";
+import { useAppDispatch } from "@/states/hooks";
+import { AppThunkDispatch } from "@/states/store";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import TitleKit from "../title-kit";
-
 export type Step = "email" | "code" | "password" | "success";
 const TrailToBase = () => {
+  const dispatch = useAppDispatch<AppThunkDispatch>();
   const { t } = useTranslation(["settings", "translation", "message"]);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("email");
@@ -30,6 +33,15 @@ const TrailToBase = () => {
         password: handleRSAEncrypt(_password),
       });
       toast.success(t("trial-password-success", { ns: "message" }));
+      setTimeout(() => {
+        dispatch(logout());
+        dispatch({
+          type: "note/setActive",
+          payload: {
+            info: undefined,
+          },
+        });
+      }, 3000);
     },
     [email]
   );

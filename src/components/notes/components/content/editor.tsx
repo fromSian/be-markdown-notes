@@ -82,7 +82,8 @@ const Editor = forwardRef(({ content, onBlur, onUpdate }: EditorProps, ref) => {
       content={content}
       editorProps={{
         attributes: {
-          class: "prose-sm dark:prose-invert sm:prose focus:outline-none",
+          class:
+            "prose-sm dark:prose-invert sm:prose focus:outline-none !max-w-full",
         },
       }}
     >
