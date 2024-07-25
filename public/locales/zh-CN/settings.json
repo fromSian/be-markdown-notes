@@ -37,5 +37,10 @@
     "light": "浅色",
     "system": "系统",
     "dark": "暗色"
+  },
+  "destroy-account": {
+    "title": "销毁账户（不可恢复）",
+    "description": "当账户被销毁时，所有数据将会删除，不可恢复",
+    "confirm": "销毁我的账户"
   }
 }

@@ -9,7 +9,7 @@
   "delete": {
     "loading": "loading...",
     "description": "delete",
-    "confirm": "Are you sure you want to delete this?",
+    "confirm": "Are you sure you want to do this?",
     "yes": "yes",
     "no": "no"
   },

@@ -9,7 +9,7 @@
   "delete": {
     "loading": "加载中...",
     "description": "删除",
-    "confirm": "请确认删除？",
+    "confirm": "请确认？",
     "yes": "确认",
     "no": "取消"
   },

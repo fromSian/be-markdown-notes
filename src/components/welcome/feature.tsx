@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import SuccessIcon from "../icons/success";
 
-const count = 6;
+const count = 7;
 
 const Feature = () => {
   const { t } = useTranslation("introduce");

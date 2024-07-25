@@ -15,5 +15,7 @@
   "update-expand-success": "update default expand successfully",
   "update-time-success": "update show detail datetime successfully",
   "update-sort-success": "update default sort ordering successfully",
-  "export-fail": "fail to export"
+  "export-fail": "fail to export",
+  "account-deleted-success": "account deleted successfully",
+  "password-valid-success": "valid password successfully"
 }

@@ -5,6 +5,8 @@
   "sign-in-with-google-info": "通過Google登錄，單次登錄有效期為一小時。全部功能可用，使用途中可轉換為正式用戶。",
   "trial": "免登錄試用",
   "trial-info": "免登錄試用一小時，體驗全部功能。試用途中可轉換成正式用戶，試用結束將清除您的數據。",
+  "switch-signin": "切換至登錄",
+  "forget-password": "忘記密碼",
   "email": "郵箱",
   "password": "密碼",
   "confirm": "確認密碼",

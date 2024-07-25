@@ -9,7 +9,7 @@
   "delete": {
     "loading": "加載中...",
     "description": "刪除",
-    "confirm": "請確認刪除？",
+    "confirm": "請確認？",
     "yes": "確認",
     "no": "取消"
   },

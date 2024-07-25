@@ -15,5 +15,7 @@
   "update-expand-success": "更新是否默认展开成功",
   "update-time-success": "更新是否展示具体日期时间成功",
   "update-sort-success": "更新默认排序方式成功",
-  "export-fail": "导出失败"
+  "export-fail": "导出失败",
+  "account-deleted-success": "账户注销成功",
+  "password-valid-success": "密码验证成功"
 }

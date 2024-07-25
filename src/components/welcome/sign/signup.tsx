@@ -16,9 +16,10 @@ import Success from "./components/success";
 interface SignUpProps {
   open: boolean;
   goSomeWhereElse: () => void;
+  isRegister?: boolean;
 }
 
-const SignUp = ({ open, goSomeWhereElse }: SignUpProps) => {
+const SignUp = ({ open, goSomeWhereElse, isRegister = true }: SignUpProps) => {
   const { t } = useTranslation(["translation", "message"]);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -71,23 +72,36 @@ const SignUp = ({ open, goSomeWhereElse }: SignUpProps) => {
     setStep("email");
   };
 
-  const sendVerificationCode = async (_email: string) => {
-    const url = "/account/send-code/";
-    await request.post(url, { email: _email });
-  };
+  const sendVerificationCode = useCallback(
+    async (_email: string) => {
+      const url = "/account/send-code/";
+      await request.post(url, { email: _email, register: isRegister });
+    },
+    [isRegister]
+  );
 
   const handlePasswordSubmit = useCallback(
     async (_password: string) => {
-      const url = "/account/register/";
-      const response = await request.post(url, {
-        email,
-        password: handleRSAEncrypt(_password),
-      });
+      if (isRegister) {
+        const url = "/account/register/";
+        const response = await request.post(url, {
+          email,
+          password: handleRSAEncrypt(_password),
+        });
+
+        toast.success(t("signup-success", { ns: "message" }));
+      } else {
+        const url = "/account/passwordnew/";
+        const response = await request.post(url, {
+          email,
+          password: handleRSAEncrypt(_password),
+        });
+        toast.success(t("change-password-success", { ns: "message" }));
+      }
       setPassword(_password);
       setStep("success");
-      toast.success(t("signup-success", { ns: "message" }));
     },
-    [email]
+    [email, isRegister]
   );
 
   return (

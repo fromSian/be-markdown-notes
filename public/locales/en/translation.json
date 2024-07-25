@@ -5,6 +5,8 @@
   "sign-in-with-google-info": "Sign in with google, single login is valid for one hour. All features are available and you can upgrade to a official account along the way.",
   "trial": "No Signup Trial",
   "trial-info": "Free to try for one hour without signing up. All features are available and you can upgrade to a official account along the way.",
+  "switch-signin": "switch to sign in",
+  "forget-password": "forget password",
   "email": "email",
   "password": "password",
   "confirm": "confirm password",

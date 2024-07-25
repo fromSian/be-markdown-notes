@@ -37,5 +37,10 @@
     "light": "淺色",
     "system": "系統",
     "dark": "暗色"
+  },
+  "destroy-account": {
+    "title": "銷毀賬戶（不可恢復）",
+    "description": "當賬戶被銷毀時，所有數據將被刪除，不可恢復",
+    "confirm": "銷毀我的賬戶"
   }
 }

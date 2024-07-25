@@ -22,6 +22,7 @@ const Sign = () => {
   const [trialStatus, setTrailStatus] = useState<
     "loading" | "fail" | "success" | ""
   >();
+  const [forget, setForget] = useState(false);
 
   useEffect(() => {
     const _open = searchParams.get("open");
@@ -94,7 +95,22 @@ const Sign = () => {
       >
         {t("sign-in")}
       </button>
-      <SignIn open={open === "signin"} />
+      <button
+        className="underline text-link text-sm text-right"
+        onClick={() => setForget((v) => !v)}
+      >
+        {t(forget ? "switch-signin" : "forget-password")}
+      </button>
+      {forget ? (
+        <SignUp
+          open={open === "signin"}
+          goSomeWhereElse={goSomeWhereElse}
+          isRegister={false}
+        />
+      ) : (
+        <SignIn open={open === "signin"} />
+      )}
+
       <button
         className={cn(
           "btn-overlap mb-4 transition-all opacity-50 hover:opacity-100",

@@ -1,4 +1,5 @@
 import Account from "./account/info";
+import Delete from "./delete";
 import Note from "./note";
 import System from "./system";
 
@@ -8,6 +9,7 @@ const Content = () => {
       <Account />
       <Note />
       <System />
+      <Delete />
     </div>
   );
 };

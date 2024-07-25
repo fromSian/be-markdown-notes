@@ -5,6 +5,7 @@
   "feature1": "Completely free",
   "feature2": "offer a no-signup trial",
   "feature3": "Google signin available",
-  "feature5": "Markdown file exporting available",
-  "feature4": "customize how the application displays"
+  "feature4": "Markdown file exporting available",
+  "feature5": "customize how the application displays",
+  "feature6": "destroy account available"
 }
