@@ -134,7 +134,7 @@ const Sign = () => {
         </p>
       </TooltipSimple>
       <TooltipSimple content={t("trial-info")}>
-        <p
+        <div
           className={cn(
             "btn-overlap w-full transition-all mb-4 opacity-50 hover:opacity-100 flex items-center gap-2 justify-center"
           )}
@@ -144,7 +144,7 @@ const Sign = () => {
           {trialStatus === "loading" && <Loader className="animate-spin" />}
           {trialStatus === "success" && <SuccessIcon />}
           {trialStatus === "fail" && <Fail />}
-        </p>
+        </div>
       </TooltipSimple>
     </div>
   );

@@ -69,7 +69,7 @@ const Wrap = ({
   }, [needAuth]);
 
   useEffect(() => {
-    if (isLogin) {
+    if (isLogin || !needAuth) {
       return;
     }
     const token = localStorage.getItem("token");
@@ -90,7 +90,7 @@ const Wrap = ({
   );
 };
 
-const lazyLoad = (path: string, needAuth: boolean = true) => {
+const lazyLoad = (path: string, needAuth: boolean = false) => {
   const Module = lazy(async () => import(`./pages/${path}.tsx`));
   return (
     <Suspense
@@ -108,7 +108,7 @@ const lazyLoad = (path: string, needAuth: boolean = true) => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: lazyLoad("notes"),
+    element: lazyLoad("notes", true),
     errorElement: lazyLoad("not-found"),
   },
   {
@@ -129,7 +129,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/settings",
-    element: lazyLoad("settings"),
+    element: lazyLoad("settings", true),
   },
 ]);
 

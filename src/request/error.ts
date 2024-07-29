@@ -49,11 +49,10 @@ export const httpErrorHandler = (error: unknown) => {
     if (response && response.data) {
       if (
         response.status === 401 &&
-        !window.location.pathname.endsWith("/welcome") &&
-        !window.location.pathname.endsWith("/introduce") &&
-        !window.location.pathname.endsWith("/google/success") &&
-        !window.location.pathname.endsWith("/google/fail")
+        (window.location.pathname.endsWith("/") ||
+          window.location.pathname.endsWith("/settings"))
       ) {
+        console.log(window.location.pathname);
         let message = "no valid token, will sign out soon";
 
         switch (localStorage.getItem("i18nextLng")) {
