@@ -1,5 +1,5 @@
 import Account from "./account/info";
-import Delete from "./delete";
+import Delete from "./delete/index";
 import Note from "./note";
 import System from "./system";
 

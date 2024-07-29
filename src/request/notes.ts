@@ -131,12 +131,16 @@ export const exportToMarkdown = async (id: string | number) => {
   return response.content;
 };
 
-export const downloadFile = async (id: string | number) => {
+export const downloadFile = async (
+  id: string | number,
+  title: string,
+  updated: string
+) => {
   const content = await exportToMarkdown(id);
   const blob = new Blob([content], { type: "text/markdown" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  link.download = "content.md";
+  link.download = `${title}_${updated}.md`;
   link.href = url;
   link.click();
 };

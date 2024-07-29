@@ -10,19 +10,21 @@ const NotFound = () => {
       <Header />
       <div className="w-full flex flex-col gap-4 pt-20 px-2 sm:px-4 justify-center items-center">
         <Bot size={60} className="text-ttertiary" />
-        <p className="text-3xl">{t("not-found.title")}</p>
+        <p className="text-3xl text-center sm:text-left">
+          {t("not-found.title")}
+        </p>
         <Link to="/" className="text-xl btn-mask-circle">
           {t("not-found.home")}
         </Link>
-        <p className="text-ttertiary flex gap-2">
+        <p className="text-ttertiary text-center sm:text-left">
           {t("not-found.description")}
           <a
             href="mailto:notetodos@163.com"
-            className=" underline hover:text-tprimary"
+            className=" underline hover:text-tprimary mr-2"
           >
             notetodos@163.com
           </a>
-          <SmilePlus />
+          <SmilePlus className="inline-block" />
         </p>
       </div>
     </>

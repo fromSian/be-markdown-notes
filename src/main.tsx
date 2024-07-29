@@ -1,7 +1,13 @@
 import { store } from "@/states/store";
 import { Loader } from "lucide-react";
 import { ThemeProvider } from "next-themes";
-import React, { lazy, ReactNode, Suspense, useEffect } from "react";
+import React, {
+  lazy,
+  ReactNode,
+  Suspense,
+  useCallback,
+  useEffect,
+} from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import {
@@ -25,7 +31,7 @@ const Wrap = ({
   const { isLogin } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const queryUserInfo = async () => {
+  const queryUserInfo = useCallback(async () => {
     try {
       const {
         defaultExpanded,
@@ -58,8 +64,9 @@ const Wrap = ({
       });
     } catch (error) {
       localStorage.removeItem("token");
+      needAuth && navigate("/welcome");
     }
-  };
+  }, [needAuth]);
 
   useEffect(() => {
     if (isLogin) {
@@ -102,7 +109,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: lazyLoad("notes"),
-    errorElement: lazyLoad("not-found", false),
+    errorElement: lazyLoad("not-found"),
   },
   {
     path: "/welcome",
@@ -114,11 +121,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/google/fail",
-    element: lazyLoad("google/fail", false),
+    element: lazyLoad("google-fail", false),
   },
   {
     path: "/google/success",
-    element: lazyLoad("google/success", false),
+    element: lazyLoad("google-success", false),
   },
   {
     path: "/settings",

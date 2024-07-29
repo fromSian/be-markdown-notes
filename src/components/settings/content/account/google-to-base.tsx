@@ -3,12 +3,12 @@ import Password from "@/components/welcome/sign/components/password";
 import { handleRSAEncrypt } from "@/lib/encryption";
 import { cn } from "@/lib/utils";
 import request from "@/request/request";
-import { logout } from "@/states/account.slice";
 import { useAppDispatch } from "@/states/hooks";
 import { AppThunkDispatch } from "@/states/store";
 import { Step } from "@/types/account";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import TitleKit from "../title-kit";
 
@@ -17,6 +17,7 @@ interface GoogleToBaseProps {
 }
 
 const GoogleToBase = ({ email }: GoogleToBaseProps) => {
+  const navigate = useNavigate();
   const { t } = useTranslation(["settings", "translation", "message"]);
   const dispatch = useAppDispatch<AppThunkDispatch>();
   const [open, setOpen] = useState(false);
@@ -38,14 +39,14 @@ const GoogleToBase = ({ email }: GoogleToBaseProps) => {
     });
     toast.success(t("google-password-success", { ns: "message" }));
     setTimeout(() => {
-      dispatch(logout());
+      navigate("/welcome");
       dispatch({
         type: "note/setActive",
         payload: {
           info: undefined,
         },
       });
-    }, 3000);
+    }, 2000);
   };
   return (
     <div className="flex flex-col mb-4">
@@ -60,19 +61,26 @@ const GoogleToBase = ({ email }: GoogleToBaseProps) => {
           open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         )}
       >
-        <div className={cn("overflow-hidden", open ? "pt-4" : "pt-0")}>
-          {step === "code" && (
-            <Code
-              buttonStr={t("verify-code", { ns: "translation" })}
-              email={email}
-              sendVerificationCode={sendVerificationCode}
-              setStep={setStep}
-              initialSended={false}
-            />
+        <div
+          className={cn(
+            "overflow-hidden flex flex-col justify-center items-center",
+            open ? "pt-4" : "pt-0"
           )}
-          {step === "password" && (
-            <Password handlePasswordSubmit={handlePasswordSubmit} />
-          )}
+        >
+          <div className="w-full sm:w-[90%] md:w-[50%] lg:w-[40%]">
+            {step === "code" && (
+              <Code
+                buttonStr={t("verify-code", { ns: "translation" })}
+                email={email}
+                sendVerificationCode={sendVerificationCode}
+                setStep={setStep}
+                initialSended={false}
+              />
+            )}
+            {step === "password" && (
+              <Password handlePasswordSubmit={handlePasswordSubmit} />
+            )}
+          </div>
         </div>
       </div>
     </div>

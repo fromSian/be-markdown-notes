@@ -1,5 +1,6 @@
 import { fetchTrial, goGoogleAuth } from "@/request/account";
 import { useAppDispatch } from "@/states/hooks";
+import { Loader } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -9,6 +10,7 @@ const SignContent = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSignIn = () => {
     navigate("/welcome?open=signin");
@@ -19,36 +21,42 @@ const SignContent = () => {
   };
 
   const handleTrial = async () => {
-    const {
-      defaultExpanded,
-      showExactTime,
-      sortInfo,
-      language,
-      theme,
-      ...rest
-    } = await fetchTrial();
-    dispatch({
-      type: "account/setAccount",
-      payload: rest,
-    });
-    const systemConfig = {
-      language: language,
-      theme: theme,
-    };
-    dispatch({
-      type: "account/setConfig",
-      payload: systemConfig,
-    });
-    const noteConfig = {
-      showExactTime: showExactTime,
-      defaultExpanded: defaultExpanded,
-      sortInfo: sortInfo,
-    };
-    dispatch({
-      type: "note/setConfig",
-      payload: noteConfig,
-    });
-    navigate("/");
+    try {
+      setLoading(true);
+      const {
+        defaultExpanded,
+        showExactTime,
+        sortInfo,
+        language,
+        theme,
+        ...rest
+      } = await fetchTrial();
+      dispatch({
+        type: "account/setAccount",
+        payload: rest,
+      });
+      const systemConfig = {
+        language: language,
+        theme: theme,
+      };
+      dispatch({
+        type: "account/setConfig",
+        payload: systemConfig,
+      });
+      const noteConfig = {
+        showExactTime: showExactTime,
+        defaultExpanded: defaultExpanded,
+        sortInfo: sortInfo,
+      };
+      dispatch({
+        type: "note/setConfig",
+        payload: noteConfig,
+      });
+      navigate("/");
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,7 +70,8 @@ const SignContent = () => {
       <button className="btn border truncate" onClick={goGoogleAuth}>
         {t("sign-in-with-google")}
       </button>
-      <button className="btn border truncate" onClick={handleTrial}>
+      <button className="btn border truncate flex gap-2" onClick={handleTrial}>
+        {loading && <Loader size={16} className="animate-spin" />}
         {t("trial")}
       </button>
     </>
@@ -74,7 +83,7 @@ const SignFold = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="block sm:hidden">
+    <div className="block md:hidden">
       <Select
         open={open}
         setOpen={setOpen}
@@ -91,7 +100,7 @@ const SignFold = () => {
 const Sign = () => {
   return (
     <>
-      <div className="hidden flex-1 sm:flex items-center justify-center gap-2 md:gap-4">
+      <div className="hidden flex-1 md:flex items-center justify-center gap-2 md:gap-4">
         <SignContent />
       </div>
       <SignFold />

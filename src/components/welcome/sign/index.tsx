@@ -95,12 +95,14 @@ const Sign = () => {
       >
         {t("sign-in")}
       </button>
-      <button
-        className="underline text-link text-sm text-right"
-        onClick={() => setForget((v) => !v)}
-      >
-        {t(forget ? "switch-signin" : "forget-password")}
-      </button>
+      {open === "signin" && (
+        <button
+          className="underline text-link text-sm text-right"
+          onClick={() => setForget((v) => !v)}
+        >
+          {t(forget ? "switch-signin" : "forget-password")}
+        </button>
+      )}
       {forget ? (
         <SignUp
           open={open === "signin"}

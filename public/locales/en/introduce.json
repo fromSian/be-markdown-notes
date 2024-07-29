@@ -7,5 +7,80 @@
   "feature3": "Google signin available",
   "feature4": "Markdown file exporting available",
   "feature5": "customize how the application displays",
-  "feature6": "destroy account available"
+  "feature6": "destroy account available",
+  "sign": "credentials",
+  "note": "note",
+  "account": "account",
+  "settings": "settings",
+  "Usage Example Video": "Usage Example Video",
+  "catalog": {
+    "official": {
+      "title": "signup & signin",
+      "content": "We provide the basic registration and sign-in that will give you an official account. An email address that can receive otp is required."
+    },
+    "google": {
+      "title": "sign in with Google",
+      "content": "You can sign in using your Google account, which will expire in an hour. Except for the expiration time, you will have full access to all features. If you are happy with our app, you can switch to an official account in the settings."
+    },
+    "trial": {
+      "title": "no signup trial",
+      "content": "You can try this application without signup or signin, you can just dive in without any email address, it will expire in one hour. When it expires we will destroy your account and data, you will not be able to access it later. So if you feel comfortable with our application, remember to switch to an official account in the settings."
+    },
+    "note": {
+      "title": "note",
+      "content": "Our application supports the markdown syntax. You can create multiple note items in a single note, so it's easy to write about the same topic in one note and still keep them separate."
+    },
+    "navigation": {
+      "title": "show/hide/resize note navigation panel",
+      "content": "Click the 'Show/Hide Navigation' button to change the visibility of the navigation panel. You can also drag the handles to change the width of the navigation panel.You can choose to have all note items expanded or collapsed by default in the settings."
+    },
+    "expand": {
+      "title": "expand/collapse note items",
+      "content": "Because there can be many note items in a note, we provide the Expand/Collapse button to expand or collapse all note items at once. Next to this, each note item has its own Expand/Collapse trigger."
+    },
+    "sort": {
+      "title": "ordering note items",
+      "content": "There are four options for how the note items are ordered, update datetime descending or ascending, create datetime descending or ascending.  You can change this at the top of each note. You can also select your preferred order in the settings."
+    },
+    "datetime": {
+      "title": "display specific/rough datetime",
+      "content": "We provide two options about how the datetime is displayed, one is the specific datetime, like '2024-07-29 04:38:51', the other is the rough distance for now, like '2 hours'. You can choose which one you want in the settings. When you hover, both these two ways will show the sepcific created and updated datetime in the tooltip. "
+    },
+    "markdown": {
+      "title": "export to markdown",
+      "content": "Export to markdown file is available! Get it at the top of each note."
+    },
+    "forget-password": {
+      "title": "forget password",
+      "content": "If you have forgotten your password, please go to the sign-in section of the home page and click on the 'forget-password' button. Please make sure that your email address is available to receive emails."
+    },
+    "avatar": {
+      "title": "update avatar",
+      "content": "when you hover over the avatar in the settings, the 'upload' button will appear, click it then select your image file, you can resize your image."
+    },
+    "change-password": {
+      "title": "change password",
+      "content": "Change password is only for official account. If you want to change password, you need to order the otp sent to your email address. Password requires at least six characters, it can includes letters, digits, and !@#$%^&*_+."
+    },
+    "delete-account": {
+      "title": "destroy account",
+      "content": "You can destroy your account in the settings, if you are an official account we need to verify your password then can destroy it, or if you are not an official account you can destroy it directly.  Once you destroy your account your data will be deleted, please be careful."
+    },
+    "google-official": {
+      "title": "switch google account to official account",
+      "content": "If you are already signed in to Google, you can switch to the official account in Settings. The email associated with your account will remain the same as your Gmail address. Once you switch to an official account, your token will last longer."
+    },
+    "trial-official": {
+      "title": "switch trial account to official account",
+      "content": "If you have a trial account, you can switch to the official account in Settings. You will need to enter an email address that can receive otp. And your data created during the trial will be kept."
+    },
+    "language": {
+      "title": "set perferred language",
+      "content": "You can select your preferred language in the preferences, and once you select an existing language, we will hide the language selector in the top right corner to make it look cleaner. The options are '-', 'en', 'zh-CN' and 'zh-TW'. The '-' means no preferred language. The 'en' means English. The 'zh-CN' means Simplified Chinese. The 'zh-TW' means Traditional Chinese."
+    },
+    "theme": {
+      "title": "set perferred theme",
+      "content": "You can select your preferred theme in the settings, once you have selected an existing theme we will hide the theme selector in the top right corner to make it look cleaner. The options are '-', 'light', 'dark' and 'system'. The '-' means no preferred theme."
+    }
+  }
 }

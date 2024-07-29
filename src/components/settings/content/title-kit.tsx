@@ -1,13 +1,13 @@
 import TooltipSimple from "@/components/ui/tooltip-simple";
 import { cn } from "@/lib/utils";
 import { MessageCircleMore } from "lucide-react";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 const TitleKit = ({
   title,
   info,
   className,
   ...rest
-}: HTMLAttributes<HTMLDivElement> & { title: string; info?: string }) => {
+}: HTMLAttributes<HTMLDivElement> & { title: ReactNode; info?: string }) => {
   return (
     <div
       className={cn("flex gap-2 items-center overflow-hidden", className)}

@@ -1,3 +1,4 @@
+import { getDateTimeInCurrentTimeZone } from "@/lib/timezone.ts";
 import { cn } from "@/lib/utils";
 import { downloadFile } from "@/request/notes";
 import { useAppSelector } from "@/states/hooks";
@@ -44,8 +45,12 @@ const Content = memo(({}: MainContentProps) => {
   };
 
   const handleExport = useCallback(async () => {
-    await downloadFile(activeId);
-  }, [activeId]);
+    await downloadFile(
+      activeInfo.id,
+      activeInfo.title || "no-title",
+      getDateTimeInCurrentTimeZone(activeInfo.updated)
+    );
+  }, [activeInfo]);
 
   return (
     <div className={cn("relative w-full h-full pl-2 sm:pl-4")}>

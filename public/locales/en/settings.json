@@ -10,7 +10,7 @@
     "submit": "submit"
   },
   "change-password": "change password",
-  "convert-type": "convert to an official account",
+  "convert-type": "switch to an official account",
   "part": {
     "note": "note",
     "system": "system"
@@ -33,7 +33,7 @@
   },
   "theme": {
     "title": "theme",
-    "description": "Perffered Theme, if this option is set, the theme switch will be hidden.",
+    "description": "Preferred Theme, if this option is set, the theme switch will be hidden.",
     "light": "light",
     "system": "system",
     "dark": "dark"
