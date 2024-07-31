@@ -120,11 +120,11 @@ const router = createBrowserRouter([
     element: lazyLoad("introduce", false),
   },
   {
-    path: "/google/fail",
+    path: "/google-fail",
     element: lazyLoad("google-fail", false),
   },
   {
-    path: "/google/success",
+    path: "/google-success",
     element: lazyLoad("google-success", false),
   },
   {
