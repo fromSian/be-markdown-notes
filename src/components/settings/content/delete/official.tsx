@@ -64,7 +64,7 @@ const Delete = () => {
               {loading && <Loader className="animate-spin" size={16} />}
               <DeleteConfirm
                 content={
-                  <button className="btn">
+                  <button className="btn" disabled={loading}>
                     {t("destroy-account.confirm")}
                   </button>
                 }

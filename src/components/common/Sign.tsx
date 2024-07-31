@@ -70,7 +70,11 @@ const SignContent = () => {
       <button className="btn border truncate" onClick={goGoogleAuth}>
         {t("sign-in-with-google")}
       </button>
-      <button className="btn border truncate flex gap-2" onClick={handleTrial}>
+      <button
+        disabled={loading}
+        className="btn border truncate flex gap-2"
+        onClick={handleTrial}
+      >
         {loading && <Loader size={16} className="animate-spin" />}
         {t("trial")}
       </button>

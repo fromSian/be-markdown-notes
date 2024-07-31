@@ -36,7 +36,7 @@ const Success = ({ goSomeWhereElse, handleLogin }: SuccessProps) => {
           {fail && <Fail />}
           {t("success.sign-in-directly")}
         </button>
-        <button className="btn" onClick={goSomeWhereElse}>
+        <button className="btn" onClick={goSomeWhereElse} disabled={loading}>
           {t("success.go-somewhere-else")}
         </button>
       </div>

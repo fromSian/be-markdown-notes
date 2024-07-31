@@ -45,7 +45,10 @@ const Other = () => {
         {loading && <Loader size={16} className="animate-spin" />}
         <DeleteConfirm
           content={
-            <button className="rounded-md px-2 border bg-background">
+            <button
+              className="rounded-md px-2 border bg-background"
+              disabled={loading}
+            >
               {t("destroy-account.confirm")}
             </button>
           }

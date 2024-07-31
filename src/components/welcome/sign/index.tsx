@@ -140,7 +140,7 @@ const Sign = () => {
           )}
           onClick={handleTrial}
         >
-          {t("trial")}
+          {trialStatus !== "loading" && t("trial")}
           {trialStatus === "loading" && <Loader className="animate-spin" />}
           {trialStatus === "success" && <SuccessIcon />}
           {trialStatus === "fail" && <Fail />}

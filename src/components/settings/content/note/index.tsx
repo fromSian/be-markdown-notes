@@ -73,11 +73,14 @@ const Note = () => {
             info={t("default-expand.description")}
           />
           <div className="flex gap-2 items-center">
-            {expandLoading && <Loader className="animate-spin" size={16} />}
-            <Switch
-              checked={defaultExpanded}
-              onCheckedChange={setDefaultExpanded}
-            />
+            {expandLoading ? (
+              <Loader className="animate-spin" size={16} />
+            ) : (
+              <Switch
+                checked={defaultExpanded}
+                onCheckedChange={setDefaultExpanded}
+              />
+            )}
           </div>
         </div>
         <div className="flex justify-between py-2 px-2 sm:px-4 gap-2 rounded-md bg-emphasis">
@@ -86,11 +89,14 @@ const Note = () => {
             info={t("show-exact-time.description")}
           />
           <div className="flex gap-2 items-center">
-            {timeLoading && <Loader className="animate-spin" size={16} />}
-            <Switch
-              checked={showExactTime}
-              onCheckedChange={setShowExactTime}
-            />
+            {timeLoading ? (
+              <Loader className="animate-spin" size={16} />
+            ) : (
+              <Switch
+                checked={showExactTime}
+                onCheckedChange={setShowExactTime}
+              />
+            )}
           </div>
         </div>
         <div className="flex justify-between py-2  px-2 sm:px-4 gap-2 rounded-md bg-emphasis">
@@ -100,12 +106,15 @@ const Note = () => {
           />
 
           <div className="flex gap-2 items-center">
-            {sortLoading && <Loader className="animate-spin" size={16} />}
-            <SelectValue
-              value={sortInfo}
-              setValue={setSortInfo}
-              items={sortOptions}
-            />
+            {sortLoading ? (
+              <Loader className="animate-spin" size={16} />
+            ) : (
+              <SelectValue
+                value={sortInfo}
+                setValue={setSortInfo}
+                items={sortOptions}
+              />
+            )}
           </div>
         </div>
       </div>

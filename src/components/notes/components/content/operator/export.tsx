@@ -24,8 +24,11 @@ const Export = memo(({ handleExport }: ExportProps) => {
   return (
     <TooltipSimple content={t("export")}>
       <div>
-        {loading && <Loader className="animate-spin" size={16} />}
-        <Download size={20} onClick={onClick} />
+        {loading ? (
+          <Loader className="animate-spin" size={16} />
+        ) : (
+          <Download size={20} onClick={onClick} />
+        )}
       </div>
     </TooltipSimple>
   );

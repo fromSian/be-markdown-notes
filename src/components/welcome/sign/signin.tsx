@@ -155,7 +155,11 @@ const SignIn = ({ open }: SignInProps) => {
             />
 
             <div className="flex justify-center gap-4 items-center">
-              <button type="submit" className="p-2 rounded-full border">
+              <button
+                type="submit"
+                className="p-2 rounded-full border"
+                disabled={loading}
+              >
                 {loading ? <Loader className="animate-spin" /> : <ArrowRight />}
               </button>
               {fail && <Fail />}
