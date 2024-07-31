@@ -4,7 +4,7 @@ import { httpErrorHandler } from "./error";
 const request = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
-      ? "/api"
+      ? "http://localhost:8000"
       : "https://fromsian.pythonanywhere.com",
 });
 
