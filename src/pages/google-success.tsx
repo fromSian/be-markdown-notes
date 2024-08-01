@@ -64,7 +64,7 @@ const GoogleSuccess = () => {
         throw new Error("token not valid");
       }
     } catch (error) {
-      navigate("/google-fail");
+      navigate("/google-fail/?message=token not valid");
     } finally {
       setLoading(false);
     }
@@ -86,7 +86,7 @@ const GoogleSuccess = () => {
         });
       }, 1000);
     } else {
-      navigate("/google-fail");
+      navigate("/google-fail/?message=token not valid");
     }
 
     return () => {
