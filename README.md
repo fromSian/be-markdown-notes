@@ -22,9 +22,8 @@ This project is front-end, the back-end is https://github.com/fromSian/all-in-on
 
 ### common
 
-- i18next
-- language switcher
-- theme switcher
+- i18next & language switcher, support English, Simplified Chinese and Traditional Chinese.
+- theme switcher, support theme based on system, dark and light.
 
 ### welcome page
 

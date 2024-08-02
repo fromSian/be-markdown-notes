@@ -40,12 +40,17 @@ const Delete = () => {
   };
   return (
     <div className="mt-4">
-      <TitleKit
+      <div
         className="py-2 px-4 rounded-md bg-fail cursor-pointer"
-        title={t("destroy-account.title")}
-        info={t("destroy-account.description")}
         onClick={() => setOpen((v) => !v)}
-      />
+      >
+        <TitleKit
+          className="w-max"
+          title={t("destroy-account.title")}
+          info={t("destroy-account.description")}
+        />
+      </div>
+
       <div
         className={cn(
           "grid transition-all",

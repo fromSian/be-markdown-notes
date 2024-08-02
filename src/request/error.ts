@@ -37,14 +37,15 @@ export const httpErrorHandler = (error: unknown) => {
   if (axios.isAxiosError(error)) {
     const response = error?.response;
 
-    if (error.code === "ERR_NETWORK") {
+    if (error.code === "ERR_NETWORK" || error.code === "Network Error") {
       console.log("connection problems..");
+      toast.error("sorry, failed to connect to back-end");
     } else if (error.code === "ERR_CANCELED") {
       console.log("connection canceled..");
     }
 
     if (error.code === "ERR_BAD_RESPONSE") {
-      toast.error("sorry, api is not working");
+      toast.error("sorry, back-end is not working");
     }
     if (response && response.data) {
       if (
