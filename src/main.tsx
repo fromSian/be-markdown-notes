@@ -69,7 +69,7 @@ const Wrap = ({
   }, [needAuth]);
 
   useEffect(() => {
-    if (isLogin || !needAuth) {
+    if (isLogin) {
       return;
     }
     const token = localStorage.getItem("token");
