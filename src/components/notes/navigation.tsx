@@ -1,10 +1,8 @@
-import { getErrorMessage } from "@/request/error";
 import { addNote } from "@/request/notes";
 import { useAppDispatch } from "@/states/hooks";
 import { NoteNavigationType } from "@/types/notes";
 import { useCallback, useState } from "react";
 import type { DateRange } from "react-day-picker";
-import { toast } from "sonner";
 import Header from "./components/navigation/header";
 import List from "./components/navigation/list";
 
@@ -35,7 +33,6 @@ const Navigation = () => {
       }
     } catch (error) {
       setNewing(false);
-      toast.warning(getErrorMessage(error));
       console.log(error);
     }
   }, []);

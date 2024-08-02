@@ -33,7 +33,6 @@ export const getErrorMessage = (error: unknown): string => {
 
 export const httpErrorHandler = (error: unknown) => {
   if (error === null) throw new Error("Unrecoverable error!! Error is null!");
-  console.log(error);
   if (axios.isAxiosError(error)) {
     const response = error?.response;
 
@@ -48,29 +47,22 @@ export const httpErrorHandler = (error: unknown) => {
       toast.error("sorry, back-end is not working");
     }
     if (response && response.data) {
-      if (
-        response.status === 401 &&
-        (window.location.pathname.endsWith("/") ||
-          window.location.pathname.endsWith("/settings"))
-      ) {
+      if (response.status === 401) {
+        localStorage.removeItem("token");
+
         console.log(window.location.pathname);
-        let message = "no valid token, will sign out soon";
+        let message = "no valid token, please sign in again";
 
         switch (localStorage.getItem("i18nextLng")) {
           case "zh-CN":
-            message = "登录失效，即将登出";
+            message = "登录失效，请重新登录";
             break;
           case "zh-TW":
-            message = "登錄失效，即將登出";
+            message = "登錄失效，請重新登錄";
             break;
           default:
         }
         toast.error(message);
-        // 401 Unauthorized
-        setTimeout(() => {
-          localStorage.removeItem("token");
-          window.location.href = "/welcome";
-        }, 2000);
       } else {
         toast.error(response.data.message);
       }

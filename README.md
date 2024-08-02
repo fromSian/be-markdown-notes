@@ -1,8 +1,8 @@
 # be markdown note front end
 
-deployment: https://be-markdown-notes.vercel.app/welcome
+deployment: https://be-markdown-notes.vercel.app/
 
-This project is front-end, the back-end is https://github.com/fromSian/all-in-one-note-back
+This project is front-end, the back-end repo is https://github.com/fromSian/all-in-one-note-back
 
 ## React + TypeScript + Vite + react-i18next + tailwind + shadcn/ui + React Router + Redux Toolkit + ...
 
