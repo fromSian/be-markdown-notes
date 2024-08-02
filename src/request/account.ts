@@ -23,7 +23,11 @@ export const fetchUserInfo = async (token = "") => {
 };
 
 export const goGoogleAuth = () => {
-  const url = "http://localhost:8000/account/google/access/";
+  const url = `${
+    import.meta.env.MODE === "development"
+      ? "http://localhost:8000"
+      : "https://fromsian.pythonanywhere.com"
+  }/account/google/access/`;
   window.open(url, "_self");
 };
 
