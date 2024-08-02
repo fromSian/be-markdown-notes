@@ -19,6 +19,7 @@ import Item from "./item";
 interface ListProps {
   date: DateRange | undefined;
   data: NoteNavigationType[];
+  newing: boolean;
   setData: Dispatch<SetStateAction<NoteNavigationType[]>>;
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
@@ -28,6 +29,7 @@ interface ListProps {
 const List = ({
   date,
   data,
+  newing,
   setData,
   loading,
   setLoading,
@@ -213,11 +215,15 @@ const List = ({
         <div
           className={`flex flex-col items-center h-full w-full absolute text-ttertiary pt-32 gap-4 `}
         >
-          <NotebookPen
-            className="cursor-pointer hover:text-tprimary animate-bounce"
-            onClick={handleAddNew}
-            size={36}
-          />
+          {newing ? (
+            <Loader className="animate-spin" size={24} />
+          ) : (
+            <NotebookPen
+              className="cursor-pointer hover:text-tprimary animate-bounce"
+              onClick={handleAddNew}
+              size={36}
+            />
+          )}
           <p className="italic text-center text-lg">{t("empty-description")}</p>
         </div>
       )}

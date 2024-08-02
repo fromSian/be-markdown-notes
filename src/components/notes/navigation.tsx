@@ -57,6 +57,7 @@ const Navigation = () => {
         loading={loading}
         setLoading={setLoading}
         handleAddNew={handleAddOneNote}
+        newing={newing}
       />
     </div>
   );

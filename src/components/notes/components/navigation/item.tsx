@@ -49,7 +49,10 @@ const Item = memo(
         onClick={onItemClick}
       >
         <div className="flex justify-between items-center mb-2">
-          <TooltipSimple content={item.title || "-"}>
+          <TooltipSimple
+            content={item.title || "-"}
+            className="flex-0 truncate"
+          >
             <p className="text-tprimary truncate">{item.title || "-"}</p>
           </TooltipSimple>
           <Delete
