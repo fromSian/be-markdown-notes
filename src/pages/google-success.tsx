@@ -1,7 +1,7 @@
 import SuccessIcon from "@/components/icons/success";
 import Header from "@/components/welcome/header";
+import { fetchUserInfo } from "@/request/account";
 import { useAppDispatch } from "@/states/hooks";
-import axios from "axios";
 import { Loader } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
@@ -21,49 +21,41 @@ const GoogleSuccess = () => {
 
   const checkToken = async (token: string) => {
     try {
+      localStorage.setItem("token", token);
       setLoading(true);
-      const response = await axios.get("/api/account/info/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const {
+        defaultExpanded,
+        showExactTime,
+        sortInfo,
+        language,
+        theme,
+        ...rest
+      } = await fetchUserInfo();
+      dispatch({
+        type: "account/setAccount",
+        payload: rest,
       });
-      if (response.data && response.data.success) {
-        const {
-          success,
-          defaultExpanded,
-          showExactTime,
-          sortInfo,
-          language,
-          theme,
-          ...rest
-        } = response.data;
-        dispatch({
-          type: "account/setAccount",
-          payload: rest,
-        });
-        const systemConfig = {
-          language: language,
-          theme: theme,
-        };
-        dispatch({
-          type: "account/setConfig",
-          payload: systemConfig,
-        });
-        const noteConfig = {
-          showExactTime: showExactTime,
-          defaultExpanded: defaultExpanded,
-          sortInfo: sortInfo,
-        };
-        dispatch({
-          type: "note/setConfig",
-          payload: noteConfig,
-        });
-        localStorage.setItem("token", token);
-        toast.success(t("signin-google-success", { ns: "message" }));
-      } else {
-        throw new Error("token not valid");
-      }
+      const systemConfig = {
+        language: language,
+        theme: theme,
+      };
+      dispatch({
+        type: "account/setConfig",
+        payload: systemConfig,
+      });
+      const noteConfig = {
+        showExactTime: showExactTime,
+        defaultExpanded: defaultExpanded,
+        sortInfo: sortInfo,
+      };
+      dispatch({
+        type: "note/setConfig",
+        payload: noteConfig,
+      });
+      localStorage.setItem("token", token);
+      toast.success(t("signin-google-success", { ns: "message" }));
     } catch (error) {
+      localStorage.removeItem("token");
       navigate("/google-fail/?message=token not valid");
     } finally {
       setLoading(false);
@@ -73,6 +65,7 @@ const GoogleSuccess = () => {
   useEffect(() => {
     localStorage.removeItem("token");
     const token = searchParams.get("token");
+    console.log(token);
     if (token) {
       checkToken(token);
       timeRef.current = setInterval(() => {
