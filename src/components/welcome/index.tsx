@@ -29,7 +29,7 @@ const Index = () => {
         {t("contact")}
         <a
           href="mailto:notetodos@163.com"
-          className=" underline mx-2 hover:text-tprimary transition-all"
+          className="underline mx-2 hover:text-tprimary transition-all"
         >
           notetodos@163.com
         </a>

@@ -20,7 +20,7 @@ const NotFound = () => {
           {t("not-found.description")}
           <a
             href="mailto:notetodos@163.com"
-            className=" underline hover:text-tprimary mr-2"
+            className="underline hover:text-tprimary mx-2"
           >
             notetodos@163.com
           </a>
