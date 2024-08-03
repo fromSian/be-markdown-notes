@@ -53,7 +53,14 @@ const Avatar = () => {
         }
       >
         <div className="w-auto backdrop-blur-md bg-opacity-50 flex flex-col gap-2">
-          <Link to="/settings">{t("settings")}</Link>
+          <Link
+            onClick={(e) => {
+              setOpen(false);
+            }}
+            to="/settings"
+          >
+            {t("settings")}
+          </Link>
 
           <button onClick={handleLogout}>{t("sign-out")}</button>
         </div>

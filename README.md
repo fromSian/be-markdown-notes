@@ -24,6 +24,8 @@ This project is front-end, the back-end repo is https://github.com/fromSian/all-
 - sign in with google
 - support for trial
 - i18next
+  my react-i18next post: https://dev.to/fromsian/react-internationalization-i18n-5cj1
+  my zod-i18n: https://dev.to/fromsian/zod-i18n-internationalization-4laa
 - customizes note display, can decide whether show specific datetime or rough, can decide what ordering in default, can decide whether to expand or collapse in default.
 - data encryption, your password and note content will be encrypted.
 - scroll to fetching data, using IntersectionObserver with backend custom list query api.
