@@ -62,19 +62,8 @@ const NewEditor = forwardRef(
       setAdding(false);
     };
 
-    const focusEditor = () => {
-      if (!editorRef?.current) {
-        return;
-      }
-      editorRef.current.focus("end");
-    };
-
     return (
-      <div
-        ref={parentRef}
-        onClick={focusEditor}
-        className="pb-8 min-h-32 relative pt-2 mb-4"
-      >
+      <div ref={parentRef} className="pb-8 min-h-32 relative pt-2 mb-4">
         <div className="flex justify-between items-center">
           <p className="text-ttertiary text-sm px-1 bg-secondary flex items-center rounded-md h-max">
             {t("new-one")}
