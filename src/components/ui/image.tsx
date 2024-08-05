@@ -16,11 +16,19 @@ const BeautyImage = ({
   alt = "",
   showAlt = false,
 }: ImageProps) => {
+  // load successfully or not
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  /**
+   * onLoad event
+   */
   const onImageLoad = () => {
     setImageLoaded(true);
   };
 
+  /**
+   * everytime the src changes, set load status to fail
+   */
   useEffect(() => {
     setImageLoaded(false);
   }, [src]);
@@ -44,8 +52,9 @@ const BeautyImage = ({
           <img className="rounded-full" src={src} onLoad={onImageLoad} />
         </div>
       </div>
+      {/* custom error component */}
       {!imageLoaded && (
-        <div>
+        <div className="flex flex-col items-center justify-center">
           <Image size={iconSize} />
           {showAlt && alt && <p>{alt}</p>}
         </div>

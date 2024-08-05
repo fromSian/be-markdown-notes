@@ -126,6 +126,8 @@ const Info = () => {
               className="w-full h-full rounded-full group-hover:blur-sm bg-blue-300 bg-opacity-40"
               src={account.image}
               iconSize={48}
+              alt={"failed"}
+              showAlt={true}
             />
           ) : (
             <User size={48} />
