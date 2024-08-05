@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import BeautyImage from "@/components/ui/image.tsx";
 import { cn } from "@/lib/utils";
 import request from "@/request/request";
 import { useAppDispatch, useAppSelector } from "@/states/hooks";
@@ -121,10 +122,10 @@ const Info = () => {
           style={{ background: !account?.image ? "#D07D07" : "transparent" }}
         >
           {account?.image ? (
-            <img
-              className="w-full h-full rounded-full group-hover:blur-sm"
+            <BeautyImage
+              className="w-full h-full rounded-full group-hover:blur-sm bg-blue-300 bg-opacity-40"
               src={account.image}
-              alt={account.email}
+              iconSize={48}
             />
           ) : (
             <User size={48} />
