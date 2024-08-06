@@ -1,6 +1,10 @@
 # be markdown note front end
 
-deployment: https://be-markdown-notes.vercel.app/
+deployment:
+
+- option1: [https://be-markdown-notes.vercel.app/](https://be-markdown-notes.vercel.app/)
+- option2: [https://main--bemarkdownnotes.netlify.app](https://main--bemarkdownnotes.netlify.app)
+- option3: [https://bemarkdownnotes.netlify.app](https://bemarkdownnotes.netlify.app)
 
 This project is front-end, the back-end repo is https://github.com/fromSian/all-in-one-note-back
 
