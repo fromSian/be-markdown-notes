@@ -36,7 +36,9 @@ const Delete = ({
     >
       <>
         {loading || deleteLoading ? (
-          <Loader size={16} className="animate-spin group-hover:block hidden" />
+          <div className="p-2">
+            <Loader size={16} className="animate-spin" />
+          </div>
         ) : (
           <DeleteConfirm handleDelete={onDelete} />
         )}

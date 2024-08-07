@@ -55,7 +55,10 @@ const DateRange = ({ disabled, date, setDate }: DateRangeProps) => {
             <CalendarIcon size={20} />
           </div>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent
+          className="w-auto p-0 max-h-[80vh] overflow-auto"
+          align="start"
+        >
           <CalendarRange
             onCancel={onCancel}
             onSubmit={onSubmit}

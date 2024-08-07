@@ -3,6 +3,7 @@ import {
   FocusEvent,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 interface ContentTitleProps {
@@ -15,9 +16,11 @@ const Title = ({ id, initialValue, handleSave }: ContentTitleProps) => {
   const [value, setValue] = useState(initialValue);
   const [loading, setLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     setValue(initialValue);
+    !initialValue && textareaRef.current?.focus();
   }, [id, initialValue]);
 
   const onBlur = useCallback(
@@ -50,6 +53,7 @@ const Title = ({ id, initialValue, handleSave }: ContentTitleProps) => {
   return (
     <>
       <textarea
+        ref={textareaRef}
         value={value}
         className="resize-none text-2xl w-full field overflow-hidden focus-visible:outline-none bg-transparent"
         rows={1}

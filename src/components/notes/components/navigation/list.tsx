@@ -41,6 +41,7 @@ const List = ({
   const observerRef = useRef<IntersectionObserver | undefined>(undefined);
   const previousRatioRef = useRef(0);
   const controllerRef = useRef<AbortController>();
+  const [empty, setEmpty] = useState(false);
 
   const { activeId, updateInfo, showExactTime } = useAppSelector(
     (state) => state.note
@@ -125,6 +126,7 @@ const List = ({
       setData([]);
       controllerRef.current = new AbortController();
       setLoading(true);
+      setEmpty(false);
       const response = await queryNoteNavigation(
         {
           start: date?.from ? format(date.from, "yyyy-MM-dd") : "",
@@ -133,13 +135,14 @@ const List = ({
         controllerRef.current.signal
       );
       if (response) {
-        setData(response.results);
+        setData(() => response.results);
         setHasNext(response.hasNext);
+        setEmpty(!Boolean(response.count));
         if (!response.hasNext) {
           setLoaded(true);
         }
         if (response.results.length) {
-          dispatch({
+          await dispatch({
             type: "note/setActive",
             payload: {
               info: response.results[0],
@@ -158,19 +161,31 @@ const List = ({
     fetchFirst();
   }, [fetchFirst]);
 
-  const handleDelete = async (id: string | number | undefined) => {
-    if (controllerRef.current) {
-      return;
-    }
-    await deleteNote(id);
-    dispatch({
-      type: "note/setActive",
-      payload: {
-        info: undefined,
-      },
-    });
-    setData((v) => v.filter((v) => v.id != id));
-  };
+  const handleDelete = useCallback(
+    async (id: string | number | undefined) => {
+      if (controllerRef.current) {
+        return;
+      }
+      await deleteNote(id);
+      if (activeId === id) {
+        dispatch({
+          type: "note/setActive",
+          payload: {
+            info: undefined,
+          },
+        });
+      }
+
+      setData((v) => {
+        const rest = v.filter((v) => v.id != id);
+        if (!rest.length) {
+          setEmpty(true);
+        }
+        return rest;
+      });
+    },
+    [activeId]
+  );
 
   useEffect(() => {
     if (!updateInfo) {
@@ -211,7 +226,7 @@ const List = ({
           : ""}
       </div>
 
-      {!loading && !date && !data.length && (
+      {empty && !date && (
         <div
           className={`flex flex-col items-center h-full w-full absolute text-ttertiary pt-32 gap-4 `}
         >
@@ -228,7 +243,11 @@ const List = ({
         </div>
       )}
       <div className="w-full flex justify-center my-2">
-        {loading && <Loader className="animate-spin" />}
+        {loading || (!data.length && !empty) ? (
+          <Loader className="animate-spin" />
+        ) : (
+          ""
+        )}
         {loaded && (data.length || date) ? (
           <p className="text-xs text-ttertiary truncate">
             {data.length} {t("item", { count: data.length })}
