@@ -1,3 +1,4 @@
+import { useAppDispatch } from "@/states/hooks";
 import { X } from "lucide-react";
 import {
   Dispatch,
@@ -26,6 +27,7 @@ const NewEditor = forwardRef(
     const [status, setStatus] = useState<
       "loading" | "success" | "fail" | undefined
     >(undefined);
+    const dispatch = useAppDispatch();
 
     useImperativeHandle(ref, () => editorRef?.current);
 
@@ -36,6 +38,13 @@ const NewEditor = forwardRef(
           block: "nearest",
         });
       }
+
+      return () => {
+        dispatch({
+          type: "save/removeOne",
+          payload: "new",
+        });
+      };
     }, []);
 
     const onSubmit = async () => {
@@ -45,21 +54,33 @@ const NewEditor = forwardRef(
 
       try {
         setStatus("loading");
-
         const content = editorRef.current?.getHTMLValue();
         const summary = editorRef.current?.getTextValue();
-
         await onNewSubmit(content, summary);
         setStatus("success");
         setAdding(false);
+        dispatch({
+          type: "save/removeOne",
+          payload: "new",
+        });
       } catch (error) {
         setStatus("fail");
-
         console.log(error);
       }
     };
     const onCancel = () => {
       setAdding(false);
+      dispatch({
+        type: "save/removeOne",
+        payload: "new",
+      });
+    };
+
+    const onEditorUpdate = () => {
+      dispatch({
+        type: "save/addOne",
+        payload: "new",
+      });
     };
 
     return (
@@ -90,7 +111,7 @@ const NewEditor = forwardRef(
             <Status status={status} isChanged={true} handleSave={onSubmit} />
           </div>
         </div>
-        <Editor content={""} ref={editorRef} />
+        <Editor content={""} ref={editorRef} onUpdate={onEditorUpdate} />
 
         {loading && <MaskLoader loading={loading} />}
       </div>

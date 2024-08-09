@@ -23,6 +23,8 @@ interface ListProps {
   setData: Dispatch<SetStateAction<NoteNavigationType[]>>;
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  empty: boolean;
+  setEmpty: Dispatch<SetStateAction<boolean>>;
   handleAddNew: () => void;
 }
 
@@ -33,6 +35,8 @@ const List = ({
   setData,
   loading,
   setLoading,
+  empty,
+  setEmpty,
   handleAddNew,
 }: ListProps) => {
   const { t } = useTranslation("note");
@@ -41,7 +45,6 @@ const List = ({
   const observerRef = useRef<IntersectionObserver | undefined>(undefined);
   const previousRatioRef = useRef(0);
   const controllerRef = useRef<AbortController>();
-  const [empty, setEmpty] = useState(false);
 
   const { activeId, updateInfo, showExactTime } = useAppSelector(
     (state) => state.note

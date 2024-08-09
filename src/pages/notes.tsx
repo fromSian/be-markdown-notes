@@ -1,3 +1,4 @@
+import BlockAlert from "@/components/notes/components/block-alert";
 import Content from "@/components/notes/content";
 import Header from "@/components/notes/header";
 import Navigation from "@/components/notes/navigation";
@@ -52,6 +53,7 @@ const Notes = () => {
 
   return (
     <>
+      <BlockAlert />
       <Header
         showNavigation={showNavigation}
         setShowNavigation={setShowNavigation}

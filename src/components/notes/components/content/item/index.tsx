@@ -1,7 +1,16 @@
 import { cn } from "@/lib/utils";
+import { useAppDispatch } from "@/states/hooks";
 import { NoteContentItemType } from "@/types/notes";
 import { FocusPosition } from "@tiptap/react";
-import { forwardRef, memo, useImperativeHandle, useRef, useState } from "react";
+import {
+  forwardRef,
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { EditorRef } from "../editor";
 import ContentEditor from "./content-editor";
 import ItemHeader from "./item-header";
@@ -41,6 +50,7 @@ const Item = memo(
       >();
       const [isChanged, setIsChanged] = useState(false);
       const editorRef = useRef<EditorRef>();
+      const dispatch = useAppDispatch();
 
       useImperativeHandle(
         ref,
@@ -58,11 +68,19 @@ const Item = memo(
         [open]
       );
 
+      useEffect(() => {
+        return () => {
+          dispatch({
+            type: "save/removeOne",
+            payload: item.id,
+          });
+        };
+      }, [item.id]);
       const toggleOpen = () => {
         setOpen((v) => !v);
       };
 
-      const onSave = async () => {
+      const onSave = useCallback(async () => {
         setStatus("loading");
         if (!editorRef.current) {
           return;
@@ -73,16 +91,30 @@ const Item = memo(
           await handleSave(item.id, content, summary);
           setStatus("success");
           setIsChanged(false);
+          dispatch({
+            type: "save/removeOne",
+            payload: item.id,
+          });
         } catch (error) {
           console.log(error);
           setStatus("fail");
           setIsChanged(false);
         }
-      };
+      }, [item.id]);
 
-      const onEditorUpdate = () => {
+      const onEditorUpdate = useCallback(() => {
         setStatus(undefined);
         setIsChanged(true);
+        dispatch({
+          type: "save/addOne",
+          payload: item.id,
+        });
+      }, [item.id]);
+
+      const onDelete = (id: string | number) => {
+        if (handleDelete) {
+          handleDelete(id);
+        }
       };
 
       return (
@@ -100,7 +132,7 @@ const Item = memo(
             status={status}
             isChanged={isChanged}
             handleSave={onSave}
-            handleDelete={handleDelete}
+            handleDelete={onDelete}
           />
           <div
             className={cn(

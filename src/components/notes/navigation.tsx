@@ -12,6 +12,7 @@ const Navigation = () => {
   const [data, setData] = useState<NoteNavigationType[]>([]);
   const [loading, setLoading] = useState(false);
   const [newing, setNewing] = useState(false);
+  const [empty, setEmpty] = useState(false);
 
   const handleAddOneNote = useCallback(async () => {
     if (loading) {
@@ -30,6 +31,7 @@ const Navigation = () => {
           },
         });
         setNewing(false);
+        setEmpty(false);
       }
     } catch (error) {
       setNewing(false);
@@ -55,6 +57,8 @@ const Navigation = () => {
         setLoading={setLoading}
         handleAddNew={handleAddOneNote}
         newing={newing}
+        empty={empty}
+        setEmpty={setEmpty}
       />
     </div>
   );

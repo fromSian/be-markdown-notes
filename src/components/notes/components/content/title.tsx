@@ -1,3 +1,4 @@
+import { useAppDispatch } from "@/states/hooks";
 import {
   ChangeEvent,
   FocusEvent,
@@ -6,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+
 interface ContentTitleProps {
   id: string | number;
   initialValue: string;
@@ -17,10 +19,18 @@ const Title = ({ id, initialValue, handleSave }: ContentTitleProps) => {
   const [loading, setLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setValue(initialValue);
     !initialValue && textareaRef.current?.focus();
+
+    return () => {
+      dispatch({
+        type: "save/removeOne",
+        payload: id,
+      });
+    };
   }, [id, initialValue]);
 
   const onBlur = useCallback(
@@ -37,18 +47,26 @@ const Title = ({ id, initialValue, handleSave }: ContentTitleProps) => {
       await handleSave(id, text);
       setLoading(false);
       setIsChanged(false);
+      dispatch({
+        type: "save/removeOne",
+        payload: id,
+      });
     },
-    [isChanged]
+    [isChanged, id]
   );
+
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setIsChanged(true);
     const value = e.target.value;
     const t = value.replace(/\r?\n/g, "");
     e.target.value = t;
-
+    setIsChanged(true);
     setValue(e.target.value);
     e.target.style.height = "0px";
     e.target.style.height = e.target.scrollHeight + "px";
+    dispatch({
+      type: "save/addOne",
+      payload: id,
+    });
   };
   return (
     <>

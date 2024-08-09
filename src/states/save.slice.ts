@@ -1,19 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type SaveState = {
+  saveList: (string | number)[];
+};
+
+const initialState: SaveState = {
+  saveList: [],
+};
 export const saveState = createSlice({
   name: "save",
-  initialState: {
-    saving: false,
-  },
+  initialState,
   reducers: {
-    setSaving: (state, action: PayloadAction<boolean>) => {
+    addOne: (state, action: PayloadAction<string | number>) => {
       return {
-        ...StaticRange,
-        saving: action.payload,
+        saveList: [...state.saveList, action.payload],
+      };
+    },
+    removeOne: (state, action: PayloadAction<string | number>) => {
+      return {
+        saveList: state.saveList.filter((item) => item != action.payload),
       };
     },
   },
 });
 
-export const { setSaving } = saveState.actions;
+export const { addOne, removeOne } = saveState.actions;
 export default saveState.reducer;
