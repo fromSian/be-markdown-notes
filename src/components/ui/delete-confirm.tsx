@@ -21,8 +21,8 @@ const DeleteConfirm = ({
   };
 
   const onOk = async (e: MouseEvent) => {
-    await handleDelete(e);
     setOpen(false);
+    await handleDelete(e);
   };
 
   const onIconClick = (e: MouseEvent) => {
@@ -41,7 +41,7 @@ const DeleteConfirm = ({
             onClick={onIconClick}
           >
             {loading ? (
-              <Loader size={16} className="text-ttertiary" />
+              <Loader size={16} className="text-ttertiary animate-spin" />
             ) : (
               <Trash2
                 size={16}

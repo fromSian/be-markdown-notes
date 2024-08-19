@@ -111,12 +111,6 @@ const Item = memo(
         });
       }, [item.id]);
 
-      const onDelete = (id: string | number) => {
-        if (handleDelete) {
-          handleDelete(id);
-        }
-      };
-
       return (
         <div>
           <ItemHeader
@@ -132,7 +126,7 @@ const Item = memo(
             status={status}
             isChanged={isChanged}
             handleSave={onSave}
-            handleDelete={onDelete}
+            handleDelete={handleDelete}
           />
           <div
             className={cn(
