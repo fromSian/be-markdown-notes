@@ -55,10 +55,14 @@ const DeleteTrigger = memo(
         handleDelete={onDelete}
         content={
           <div className="group cursor-pointer px-2 rounded-sm text-center flex items-center bg-secondary border border-transparent hover:border-border hover:bg-transparent py-1">
-            <Trash
-              size={16}
-              className="text-ttertiary group-hover:text-tprimary group-active:scale-95 transition-all"
-            />
+            {loading ? (
+              <Loader size={16} className="text-ttertiary" />
+            ) : (
+              <Trash
+                size={16}
+                className="text-ttertiary group-hover:text-tprimary group-active:scale-95 transition-all"
+              />
+            )}
           </div>
         }
       />

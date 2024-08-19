@@ -1,4 +1,4 @@
-import { Trash2 } from "lucide-react";
+import { Loader, Trash2 } from "lucide-react";
 import { MouseEvent, ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Select from "./select";
@@ -6,9 +6,14 @@ import Select from "./select";
 interface DeleteConfirmProps {
   handleDelete: (e: MouseEvent) => void;
   content?: ReactNode;
+  loading?: boolean;
 }
 
-const DeleteConfirm = ({ handleDelete, content }: DeleteConfirmProps) => {
+const DeleteConfirm = ({
+  loading,
+  handleDelete,
+  content,
+}: DeleteConfirmProps) => {
   const { t } = useTranslation("note");
   const [open, setOpen] = useState(false);
   const onCancel = () => {
@@ -35,10 +40,14 @@ const DeleteConfirm = ({ handleDelete, content }: DeleteConfirmProps) => {
             className="p-2 hover:bg-secondary rounded-md"
             onClick={onIconClick}
           >
-            <Trash2
-              size={16}
-              className="cursor-pointer flex-shrink-0 transition-all text-ttertiary hover:text-tprimary active:scale-90"
-            />
+            {loading ? (
+              <Loader size={16} className="text-ttertiary" />
+            ) : (
+              <Trash2
+                size={16}
+                className="cursor-pointer flex-shrink-0 transition-all text-ttertiary hover:text-tprimary active:scale-90"
+              />
+            )}
           </div>
         )
       }
