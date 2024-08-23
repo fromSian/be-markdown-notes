@@ -1,19 +1,23 @@
 import { logout } from "@/states/account.slice";
 import { useAppDispatch, useAppSelector } from "@/states/hooks";
 import { AppThunkDispatch } from "@/states/store";
+import { Loader } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BeautyImage from "../ui/image";
 import Select from "../ui/select";
 const Avatar = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation("header");
   const { isLogin, account } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch<AppThunkDispatch>();
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
     try {
+      setLoading(true);
       const res = await dispatch(logout()).unwrap();
       dispatch({
         type: "note/setActive",
@@ -21,7 +25,10 @@ const Avatar = () => {
           info: undefined,
         },
       });
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      navigate("/");
       console.log(error);
     }
   };
@@ -45,7 +52,7 @@ const Avatar = () => {
           </div>
         }
       >
-        <div className="w-auto backdrop-blur-md bg-opacity-50 flex flex-col gap-2">
+        <div className="w-auto backdrop-blur-md bg-opacity-50 flex flex-col gap-2 items-center">
           <Link
             onClick={(e) => {
               setOpen(false);
@@ -55,7 +62,11 @@ const Avatar = () => {
             {t("settings")}
           </Link>
 
-          <button onClick={handleLogout}>{t("sign-out")}</button>
+          {loading ? (
+            <Loader size={16} className="animate-spin" />
+          ) : (
+            <button onClick={handleLogout}>{t("sign-out")}</button>
+          )}
         </div>
       </Select>
     )
